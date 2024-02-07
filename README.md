@@ -30,12 +30,14 @@ Perimisen keskeinen idea on se, että yliluokassa määriteltyjä ominaisuuksia 
         }
     } 
 
-## Tehtävä1
-Rakenna koiranomistajalle perivä luokka ja sille ylikirjoittava `SayOpinion` -metodi
+//## Tehtävä1
+//Rakenna koiranomistajalle perivä luokka ja sille ylikirjoittava `SayOpinion` -metodi
 
-// Create a new dog owner and call SayOpinion method
- DogOwner dogOwner = new DogOwner();
-dogOwner.SayOpinion();
+    // Create a new dog owner and call SayOpinion method
+     DogOwner dogOwner = new DogOwner();
+    {
+     dogOwner.SayOpinion();
+    } 
 ```
 
 Perrinteisesti metodin ylikirjoittaminen aliluokassa on määritelty käyttämällä komentoja `virtual` ja `override`:
