@@ -33,7 +33,6 @@ Perimisen keskeinen idea on se, että yliluokassa määriteltyjä ominaisuuksia 
 ## Tehtävä1
 Rakenna koiranomistajalle perivä luokka ja sille ylikirjoittava `SayOpinion` -metodi
 
-```csharp
 // Create a new dog owner and call SayOpinion method
  DogOwner dogOwner = new DogOwner();
 dogOwner.SayOpinion();
