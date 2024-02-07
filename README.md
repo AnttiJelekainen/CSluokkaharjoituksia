@@ -7,4 +7,26 @@ Perimisen keskeinen idea on se, että yliluokassa määriteltyjä ominaisuuksia 
 
 ```csharp
 
+    class Hooman
+    {
+        // Define properties of Hooman ie. fields
+        public string name = "Essi Esimerkki";
+        public int age = 30;
+        public string gender = "Emäntä";
+
+        // Default constructor w/o arguments
+        // No need to define, will be created automatically
+        public Hooman()
+        {
+
+        }
+    }
+
+        class CatOwner : Hooman
+        {
+        public new void SayOpinion()
+        {
+        Console.WriteLine("Kissat ovat itsenäisiä ja pitävät hiiret loitolla");
+        }
+    }
 ```
