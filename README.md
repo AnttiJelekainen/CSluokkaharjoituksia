@@ -28,5 +28,18 @@ Perimisen keskeinen idea on se, että yliluokassa määriteltyjä ominaisuuksia 
         {
         Console.WriteLine("Kissat ovat itsenäisiä ja pitävät hiiret loitolla");
         }
-    }
+    } 
+
+## Tehtävä1
+Rakenna koiranomistajalle perivä luokka ja sille ylikirjoittava `SayOpinion` -metodi
+
+```csharp
+// Create a new dog owner and call SayOpinion method
+ DogOwner dogOwner = new DogOwner();
+dogOwner.SayOpinion();
 ```
+
+Perrinteisesti metodin ylikirjoittaminen aliluokassa on määritelty käyttämällä komentoja `virtual` ja `override`:
+
+## Tehtävä2
+Tee yliluokka `Pet` ja sille aliluokka `Hare`. Määrittele metodi `Eats`, joka tulostaa ruudulle eläimen ruokavalion. `Pet` -luokassa tyyliin "Syö ruokaa" ja aliluokassa "Syö porkkanoita" .Käytä perinteistä määrittelyä virtuaaliseksi metodiksi ja ylikirjoitettavaksi metodiksi. 
