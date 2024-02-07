@@ -30,17 +30,26 @@ Perimisen keskeinen idea on se, että yliluokassa määriteltyjä ominaisuuksia 
         }
     } 
 
-//## Tehtävä1
-//Rakenna koiranomistajalle perivä luokka ja sille ylikirjoittava `SayOpinion` -metodi
+## Tehtävä1
+Rakenna koiranomistajalle perivä luokka ja sille ylikirjoittava `SayOpinion` -metodi
 
     // Create a new dog owner and call SayOpinion method
      DogOwner dogOwner = new DogOwner();
-    {
-     dogOwner.SayOpinion();
-    } 
+    
+     dogOwner.SayOpinion();   
 ```
 
-Perrinteisesti metodin ylikirjoittaminen aliluokassa on määritelty käyttämällä komentoja `virtual` ja `override`:
+Perinteisesti metodin ylikirjoittaminen aliluokassa on määritelty käyttämällä komentoja `virtual` ja `override`:
 
 ## Tehtävä2
 Tee yliluokka `Pet` ja sille aliluokka `Hare`. Määrittele metodi `Eats`, joka tulostaa ruudulle eläimen ruokavalion. `Pet` -luokassa tyyliin "Syö ruokaa" ja aliluokassa "Syö porkkanoita" .Käytä perinteistä määrittelyä virtuaaliseksi metodiksi ja ylikirjoitettavaksi metodiksi. 
+
+## Tehtävä 3
+Luo uusi sovellus (solution) ja projekti. Asetukset `C#`, `Windows` -alustalle ja `Console` -sovellustyypiksi.
+Sovelluksen avulla kerätään tietoa tietoteknisistä laitteista. Kaikille laitteille yhteisiä ominaisuuksia ovat:
+
+1. Hankintapäivä (string)
+2. Hankintahinta (double)
+3. Takuuaika kuukausina (int)
+
+Kiinnostuksen kohteena ovat tietokoneet, puhelimet ja tabletit. Rakenna näille luokkamääritykset ja periytä yhteiset ominaisuudet yliluokasta. Muista kommentoida koodia.
