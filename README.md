@@ -20,6 +20,11 @@ Perimisen keskeinen idea on se, että yliluokassa määriteltyjä ominaisuuksia 
         {
 
         }
+
+        public void SayOpinion()
+        {
+        Console.WriteLine("Lemmikit ovat elämän suola");
+        }
     }
         // Sub/Derived/Child class inherits Hooman class
         class CatOwner : Hooman
