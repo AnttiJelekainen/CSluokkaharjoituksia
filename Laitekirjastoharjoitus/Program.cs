@@ -69,25 +69,31 @@ namespace Laiterekisteri
         // -------------
     }
 
-    // Class for computers, inherits Device class
+    // Class for Computers. Inherits properties and methods from Device class.
     class Computer : Device
     {
+        // Fields:
+        string processorType;
+        public string ProcessorType { get { return processorType; } set {  processorType = value; } }
+
+
+        int amountRAM;
+        public int AmountRAM { get { return amountRAM; } set { amountRAM = value; } }
+
+
+        int storageCapacity;
+        public int StorageCapacity { get { return storageCapacity; } set {  storageCapacity = value; } }
+
+
+        // Constructors:
+        public Computer() : base() 
+            { }
 
     }
 
-    // Class for computers, inherits Device class
     class SmartPhone : Device
-    {
-        // Fields
+    { }
 
-        // Properties
-
-        // Constructors
-
-        // Other methods
-    }
-
-    // Class for computers, inherits Device class
     class Tablet : Device
     {
         // Fields
@@ -120,7 +126,14 @@ namespace Laiterekisteri
 
             Console.WriteLine(device3.Identity);
             Console.WriteLine(device3.Price);
+            Console.WriteLine(device3.DateBought);
+            Console.WriteLine(device3.Warranty);
 
+            // Creating new Computer. Inherits properties and methods from Device class.
+            Computer computer1 = new Computer();
+            Console.WriteLine("New computer name is: " + computer1.Identity);
+
+            // keeps the window open untill Enter is pressed.
             Console.ReadLine();
         }
     }
