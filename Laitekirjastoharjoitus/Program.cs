@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -167,8 +168,36 @@ namespace Laiterekisteri
             while (true)
             {
                 Console.WriteLine("Minkä laitteen tiedot tallennetaan? ");
-                Console.Write("1.) Computer, 2.) Tablet, 3.) Phone");
+                Console.Write("1.) Tietokone 2.) Tabletti 3.) Älypuhelin : ");
                 string type = Console.ReadLine();
+
+                // Creating Switch-Case structure:
+                switch(type)
+                {
+
+                    case "1":
+                        Console.Write("Nimi: ");
+                        string computerName = Console.ReadLine();
+                        Computer computer = new Computer();
+                        break;
+
+                    case "2":
+                        Console.Write("Nimi: ");
+                        string tabletName = Console.ReadLine();
+                        Tablet tablet = new Tablet();
+                        break;
+
+                    case "3":
+                        Console.Write("Nimi: ");
+                        string smartphoneName = Console.ReadLine();
+                        SmartPhone smartphone = new SmartPhone();
+                        break;
+
+                    default:
+                        Console.WriteLine("Virheellinen valinta - anna pelkkä numero");
+                        break;
+                }
+
 
 
                 // While loop exit:
