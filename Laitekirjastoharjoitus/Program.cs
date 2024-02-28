@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Laiterekisteri
@@ -84,8 +87,8 @@ namespace Laiterekisteri
         {
             Console.WriteLine("Laitteen nimi: " + this.identity);
             Console.WriteLine("Ostopäivä: " + this.dateBought);
-            Console.WriteLine("Hinta: " + this.price);
-            Console.WriteLine("Takuuaika: " + this.warranty);
+            Console.WriteLine("Hinta: " + this.price + " euroa");
+            Console.WriteLine("Takuuaika: " + this.warranty + "kk");
         }
 
         public void ShowBasicTechInfo()
@@ -93,12 +96,23 @@ namespace Laiterekisteri
             Console.WriteLine("Prosessori: " + ProcessorType);
             Console.WriteLine("Keskusmuisti:  " + AmountRAM);
             Console.WriteLine("Levytila: " + StorageCapacity);
+            Console.WriteLine();
         }
 
-        // Other methods
-        // -------------
+        // This method shows the last date of warranty:
+        public void WarrantyDate()
+        {
+            // Calculating the end of warranty, notice ISO-standarded dates: year-month-day
+            DateTime startDate = DateTime.ParseExact(this.DateBought, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
+            // Changing datetime-string to datetime-clock format:
+            DateTime endDate = startDate.AddMonths(this.Warranty);
 
+            // Changing datetime to ISO-standard format:
+            string isoDate = endDate.ToString("s");
+            Console.WriteLine("Takuu päättyy " + isoDate);
+
+        }
     }
 
     /* Class for Computers | Inherits properties and methods from Device class. */
@@ -163,6 +177,19 @@ namespace Laiterekisteri
     {
         static void Main(string[] args)
         {
+            // Creating VECTORS and counter to items/elements:
+            Computer[] computers = new Computer[10];
+            Tablet[] tablets = new Tablet[10];
+            SmartPhone[] smartphones = new SmartPhone[10];
+            int numberOfComputers = 0;
+            int numberOfTables = 0;
+            int numberOfSmartPhones = 0;
+
+            // alternative creating STACK for devices
+            Stack<Computer> computerStack = new Stack<Computer>();
+
+
+
             // While loop that keeps up the main program running:
             while (true)
             {
@@ -179,10 +206,20 @@ namespace Laiterekisteri
                         string computerName = Console.ReadLine();
                         Computer computer = new Computer(computerName);
 
-                        Console.Write("Ostopäivä: ");
+                        Console.Write("Ostopäivä muodossa vvvv-kk-pp: ");
                         computer.DateBought = Console.ReadLine();
 
-                        Console.Write("Hinta: ");
+                        try
+                        {
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Virheellinene ostopäivä: " + ex.Message);
+                            break;
+                        }
+
+                            Console.Write("Hinta: ");
                         string price = Console.ReadLine();
 
                         try
@@ -201,11 +238,12 @@ namespace Laiterekisteri
                         try
                         {
                             computer.Warranty = int.Parse(warranty);
+                            
 
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Virheellinen takuutieto: " + ex.Message);
+                            Console.WriteLine("Virheellinen takuutieto, ilmoita kokonaislukuna: " + ex.Message);
                             break;
                         }
 
@@ -222,6 +260,7 @@ namespace Laiterekisteri
                         {
 
                             Console.WriteLine("Virheellinen muistin määrä, vain kokonaisluvut sallittu: " + ex.Message);
+                            break;
                         }
 
                         Console.Write("Tallennuskapasiteetti (GB): ");
@@ -235,13 +274,39 @@ namespace Laiterekisteri
                         {
 
                             Console.WriteLine("Virheellinen tallennustilan koko, vain kokonaisluvut sallittu: " + ex.Message);
+                            break;
                         }
 
+                        Console.WriteLine();
+                        Console.WriteLine("------------------------------------------------------");
+                        Console.WriteLine();
 
 
-                        // Näytetään olion tiedot metodien avulla
+                        // Show the info of elements by using method:
                         computer.ShowPurchaseInfo();
+
+                        try
+                        {
+                            computer.WarrantyDate();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Ostopäivä virheellinen: " + ex.Message);
+                            break;
+                        }
+
+                        Console.WriteLine();
                         computer.ShowBasicTechInfo();
+
+                        // Adding computer into VECTOR:
+                        computers[numberOfComputers] = computer;
+                        Console.WriteLine("Vektorin indeksi on nyt " + numberOfComputers);
+                        numberOfComputers++;
+                        Console.WriteLine($"Nyt syötettiin {numberOfComputers}. kone");
+
+                        // alternative add computers into STACK
+
+                        computerStack.Push(computer);
 
 
                         break;
@@ -264,15 +329,23 @@ namespace Laiterekisteri
                 }
 
 
-
+                Console.WriteLine();
                 // While loop exit:
                 Console.WriteLine("Haluatko jatkaa K/e");
                 string continueAnswer = Console.ReadLine();
                 continueAnswer = continueAnswer.Trim();
                 continueAnswer = continueAnswer.ToLower();
 
+                Console.WriteLine("");
+                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("");
+
                 if (continueAnswer == "e")
                 {
+                    // summary before closing program:
+                    Console.WriteLine("Tietokonevektorissa on " + computers.Length + " alkiota");
+                    Console.WriteLine($"Pinossa on nyt {computerStack.Count} tietokonetta");
+
                     break;
                 }
 
