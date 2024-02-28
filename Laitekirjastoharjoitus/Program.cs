@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +21,15 @@ namespace Laiterekisteri
         // Properties
         // ----------
 
-        string processorType;
+        string processorType = "N/A";
         public string ProcessorType { get { return processorType; } set { processorType = value; } }
 
 
-        int amountRAM;
+        int amountRAM = 0;
         public int AmountRAM { get { return amountRAM; } set { amountRAM = value; } }
 
 
-        int storageCapacity;
+        int storageCapacity = 0;
         public int StorageCapacity { get { return storageCapacity; } set { storageCapacity = value; } }
 
         public string Identity
@@ -126,21 +127,19 @@ namespace Laiterekisteri
     class Tablet : Device
     {
 
-        // Fields:
-        // -------
+        // Fields and Properties:
+        // ----------------------
 
-        string operatingSystem;
-        public string OperationSystem { get { return operatingSystem; } set { operatingSystem = value; } }
+        string operatingSystem; // Fields
+        public string OperationSystem { get { return operatingSystem; } set { operatingSystem = value; } } // Properties -> starts with uppercase
 
         bool stylusEnablet = false;
         public bool StylusEnablet { get { return stylusEnablet; } set { stylusEnablet = value; } }
 
-        // Properties:
-        // -----------
 
 
         // Constructors
-        //-------------
+        // -------------
 
         public Tablet() : base()
         { }
@@ -178,7 +177,73 @@ namespace Laiterekisteri
                     case "1":
                         Console.Write("Nimi: ");
                         string computerName = Console.ReadLine();
-                        Computer computer = new Computer();
+                        Computer computer = new Computer(computerName);
+
+                        Console.Write("Ostopäivä: ");
+                        computer.DateBought = Console.ReadLine();
+
+                        Console.Write("Hinta: ");
+                        string price = Console.ReadLine();
+
+                        try
+                        {
+                            computer.Price = double.Parse(price);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Virheellinen hintatieto: " + ex.Message);
+                            break;
+                        }
+
+                        Console.WriteLine("Takuun kesto kuukausina: ");
+                        string warranty = Console.ReadLine();
+
+                        try
+                        {
+                            computer.Warranty = int.Parse(warranty);
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Virheellinen takuutieto: " + ex.Message);
+                            break;
+                        }
+
+                        Console.Write("Prosessorin tyyppi: ");
+                        computer.ProcessorType = Console.ReadLine();
+                        Console.Write("Keskumuistin määrä (GB): ");
+                        string amountRam = Console.ReadLine();
+
+                        try
+                        {
+                            computer.AmountRAM = int.Parse(amountRam);
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine("Virheellinen muistin määrä, vain kokonaisluvut sallittu: " + ex.Message);
+                        }
+
+                        Console.Write("Tallennuskapasiteetti (GB): ");
+                        string storageCapacity = Console.ReadLine();
+
+                        try
+                        {
+                            computer.StorageCapacity = int.Parse(storageCapacity);
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine("Virheellinen tallennustilan koko, vain kokonaisluvut sallittu: " + ex.Message);
+                        }
+
+
+
+                        // Näytetään olion tiedot metodien avulla
+                        computer.ShowPurchaseInfo();
+                        computer.ShowBasicTechInfo();
+
+
                         break;
 
                     case "2":
