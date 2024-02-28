@@ -109,7 +109,7 @@ namespace Laiterekisteri
             DateTime endDate = startDate.AddMonths(this.Warranty);
 
             // Changing datetime to ISO-standard format:
-            string isoDate = endDate.ToString("s");
+            string isoDate = endDate.ToString("yyyy-MM-dd");
             Console.WriteLine("Takuu päättyy " + isoDate);
 
         }
